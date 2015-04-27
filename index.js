@@ -22,6 +22,7 @@ client.on('connect', function () {
  
 client.on('message', function (topic, message) {
   // message is Buffer 
+  console.log(message.toString());
   message = JSON.parse(message);
   var taxi = {
 		id: message.driver,
@@ -42,8 +43,7 @@ client.on('message', function (topic, message) {
 
 	  taxis.push(taxi);
   }
-  console.log(taxis[0]);                                                                                                                                                                                 
-                                                                                                                         
+  console.log(taxis[0]);                                                                                                                     
 });
 
 app.get('/', function(req, res){                                                                                         
@@ -74,7 +74,7 @@ app.use(function(err, req, res, next){
     res.render('500');                                                                                                   
 });                                                                                                                      
                                                                                                                          
-app.listen(3000, function(){                                                                                             
-    console.log('listening on port 3000');                                                                               
+app.listen(8888, function(){                                                                                             
+    console.log('listening on port 8888');                                                                               
 });                                                                                                                      
         
