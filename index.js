@@ -42,11 +42,13 @@ client.on('message', function (topic, message) {
   if (!added) {
 
 	  taxis.push(taxi);
+    app.locals.taxis = taxis;
   }
+  // app.render('home');
   console.log(taxis[0]);                                                                                                                     
 });
 
-app.get('/', function(req, res){                                                                                         
+app.get('/', function(req, res){                                                                                  
     res.render('home');                                                                                                  
 });                                                                                                                      
                                                                                                                          
@@ -57,13 +59,11 @@ app.get('/error', function(req, res){
 app.get('/api/easycab', function(req, res){                                                                    
     res.json(taxis);                                                                                                                  
 });                                                                                                                      
-
-/*                                                                                                                         
-app.get('/partials/park-info/:id', function(req, res){                                                                   
-    getParks(function(parks){                                                                                            
-        res.render('partials/park-info', { park: parks.byId[req.params.id], layout: null });                             
-    });                                                                                                                  
-}); */                                                                                                                     
+                                                                                                                    
+app.get('/partials/taxi-info/:id', function(req, res){  
+  console.log(taxis);                                                                 
+    res.render('partials/taxi-info', { taxi: taxis.byId[req.params.id], layout: null });                             
+});                                                                                                                    
                                                                                                                          
 app.use(function(req, res){                                                                                              
     res.render('404');                                                                                                   
